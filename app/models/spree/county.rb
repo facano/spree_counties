@@ -1,5 +1,5 @@
 class Spree::County < ActiveRecord::Base
-  delegate_belongs_to :state, :country
+  delegate :country, to: :state
   has_many :addresses, dependent: :nullify
   validates :name, presence: true
   Spree::Ability.register_ability(CountyAbility)
