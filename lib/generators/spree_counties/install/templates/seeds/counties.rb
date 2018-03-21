@@ -1,6 +1,14 @@
 # encoding: utf-8
 
-country = Spree::Country.find_by name:'Chile', iso_name: "CHILE", iso: "CL", iso3: "CHL", numcode: 152
+ country = Spree::Country.where(
+    :name => "Chile",
+    :iso3 => "CHL",
+    :iso => "CL",
+    :iso_name => "CHILE",
+    :numcode => 152,
+    :states_required => true
+  ).first_or_create
+ Spree::Config[:default_country_id] = country.id
 
 #Chilean states
 xv   = Spree::State.find_by name: 'Arica y Parinacota', abbr: 'AP', country: country
